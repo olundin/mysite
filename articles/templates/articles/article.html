@@ -3,3 +3,12 @@
 <p>Modified: <time>{{ article.date_modified }}</time></p>
 
 <p>{{ article.text }}</p>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'articles:comment' article.id %}" method="post">
+{% csrf_token %}
+    <input type="text" name="alias" placeholder="Your name">
+    <input type="text" name="text" placeholder="Comment text">
+    <input type="submit" value="Submit comment" />
+</form>
