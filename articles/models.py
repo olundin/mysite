@@ -7,6 +7,10 @@ class Article(models.Model):
     date_published = models.DateTimeField()
     date_modified = models.DateTimeField()
 
+    def save(self, *args, **kwargs):
+        self.date_modified = timezone.now()
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.title
 
