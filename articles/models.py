@@ -1,3 +1,6 @@
+import requests
+import json
+
 from django.db import models
 from django.utils import timezone
 
@@ -6,6 +9,18 @@ class Article(models.Model):
     text = models.TextField()
     date_published = models.DateTimeField()
     date_modified = models.DateTimeField()
+
+    def comment_list(self):
+        return Comment.objects.filter(article=self)
+
+    def text_html(self):
+        """Returns the article text as html (from markdown)"""
+        # https://developer.github.com/v3/markdown/
+        url = "https://api.github.com/markdown"
+        payload = {"text": self.text, "mode": "markdown"}
+        response = requests.post(url, data=json.dumps(payload))
+        response.raise_for_status()
+        return response.text
 
     def save(self, *args, **kwargs):
         self.date_modified = timezone.now()
