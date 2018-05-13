@@ -1,3 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'articles/style.css' %}" />
+
 {% if article_list %}
     <ul>
     {% for article in article_list %}
