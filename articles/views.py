@@ -1,20 +1,29 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.views import generic
+from django.utils import timezone
 
 from .models import Article, Comment
 
-# List all articles
-def index(request):
-    articles_list = Article.objects.order_by("date_published")
-    context = {"articles_list": articles_list}
-    return render(request, "articles/index.html", context)
+class IndexView(generic.ListView):
+    template_name = "articles/index.html"
+    context_object_name = "article_list"
 
-# View single article
-def article(request, article_id):
-    article = get_object_or_404(Article, pk=article_id)
-    context = {"article": article}
-    return render(request, "articles/article.html", context)
+    def get_queryset(self):
+        """
+        Return all articles (not including those
+        set to be published in the future)
+        """
+        return Article.objects.filter(
+            date_published__lte=timezone.now()
+        ).order_by("-date_published")
+
+
+class ArticleView(generic.DetailView):
+    model = Article
+    template_name = "articles/article.html"
+
 
 # Comment on article
 def comment(request, article_id):

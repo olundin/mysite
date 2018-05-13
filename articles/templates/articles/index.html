@@ -1,6 +1,6 @@
-{% if articles_list %}
+{% if article_list %}
     <ul>
-    {% for article in articles_list %}
+    {% for article in article_list %}
         <li><a href="{% url 'articles:article' article.id %}">{{ article.title }}</a></li>
     {% endfor %}
     </ul>
