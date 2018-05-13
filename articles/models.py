@@ -32,4 +32,4 @@ class Comment(models.Model):
     objects = CommentManager()
 
     def __str__(self):
-        return alias + ": " + text[:10]
+        return self.alias + ": " + self.text[:10] + "..."
