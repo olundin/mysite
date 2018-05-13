@@ -11,6 +11,7 @@ class ArticleAdmin(admin.ModelAdmin):
         ("Content", {"fields": ["title", "text"]}),
         ("Date information", {"fields": ["date_published", "date_modified"], "classes": ["collapse"]})
     ]
+    readonly_fields = ("date_modified",)
     inlines = [CommentInline]
     list_display = ("title", "date_published", "date_modified")
     list_filter = ["date_published", "date_modified"]
