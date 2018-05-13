@@ -24,6 +24,17 @@ class ArticleView(generic.DetailView):
     model = Article
     template_name = "articles/article.html"
 
+    def get_context_data(self, **kwargs):
+        """Extra context"""
+        context = super().get_context_data(**kwargs)
+        # Send article comment list
+        context["comment_list"] = Comment.objects.filter(article=self.kwargs["pk"])
+        return context
+
+class CommentsView(generic.ListView):
+    template_name = "articles/comment_list.html"
+    context_object_name = "comment_list"
+
 
 # Comment on article
 def comment(request, article_id):

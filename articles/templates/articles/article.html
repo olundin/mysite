@@ -8,7 +8,20 @@
 
 <form action="{% url 'articles:comment' article.id %}" method="post">
 {% csrf_token %}
-    <input type="text" name="alias" placeholder="Your name">
-    <input type="text" name="text" placeholder="Comment text">
+    <input type="text" name="alias" placeholder="Your name"><br />
+    <textarea name="text" placeholder="Comment text"></textarea><br />
     <input type="submit" value="Submit comment" />
 </form>
+
+{% if comment_list %}
+    <ul>
+    {% for comment in comment_list %}
+        <li>
+            <p>Comment posted on <time>{{ comment.date_posted }}</time> by {{ comment.alias }}:</p>
+            <p>{{ comment.text }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No comments are available.</p>
+{% endif %}
