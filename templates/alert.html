@@ -1,0 +1,31 @@
+{% comment %}
+Displays messages given using the context variables.
+{% endcomment %}
+
+{# Success #}
+{% if success_message %}
+<div class="alert alert-success">
+  <strong>Success:</strong> {{ success_message }}
+</div>
+{% endif %}
+
+{# Info #}
+{% if info_message %}
+<div class="alert alert-info">
+  <strong>Info:</strong> {{ info_message }}
+</div>
+{% endif %}
+
+{# Warning #}
+{% if warning_message %}
+<div class="alert alert-warning">
+  <strong>Warning:</strong> {{ warning_message }}
+</div>
+{% endif %}
+
+{# Danger #}
+{% if danger_message %}
+<div class="alert alert-danger">
+  <strong>Danger:</strong> {{ danger_message }}
+</div>
+{% endif %}

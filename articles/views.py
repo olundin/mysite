@@ -36,9 +36,17 @@ def comment(request, article_id):
     try:
         alias = request.POST["alias"]
         text = request.POST["text"]
+
+        if len(alias) == 0 and len(text) == 0:
+            raise ValueError("Name or comment text empty")
+
     except KeyError:
+        # Post data not sent
+        context = {"article": article, "danger_message": "There was a problem submitting your comment."}
+        return render(request, "articles/article.html", context)
+    except ValueError:
         # Comment form not filled in
-        context = {"article": article, "error_message": "Comment information not filled in."}
+        context = {"article": article, "warning_message": "Comment information not filled in."}
         return render(request, "articles/article.html", context)
     else:
         parent = None

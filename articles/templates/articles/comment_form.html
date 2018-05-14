@@ -1,9 +1,23 @@
-<form action="{% url 'articles:comment' article.id %}" method="post" class="comment-form">
-{% csrf_token %}
+<form action="{% url 'articles:comment' article.id %}" method="post" class="form-horizontal comment-form">
+    {% csrf_token %}
     {% if comment %}
     <input type="hidden" name="parent" value="{{ comment.id }}">
     {% endif %}
-    <input type="text" name="alias" placeholder="Your name"><br />
-    <textarea name="text" placeholder="Comment text"></textarea><br />
-    <input type="submit" value="Submit comment" />
+    <div class="form-group">
+        <label for="alias" class="control-label col-sm-1">Name:</label>
+        <div class="col-sm-11">
+            <input type="text" class="form-control" name="alias" placeholder="Enter your name" id="alias"><br />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="alias" class="control-label col-sm-1">Text:</label>
+        <div class="col-sm-11">
+            <textarea name="text" class="form-control" placeholder="Enter comment text" id="text"></textarea><br />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-1 col-sm-11">
+            <input type="submit" class="btn btn-primary" value="Submit comment" />
+        </div>
+    </div>
 </form>
