@@ -23,7 +23,7 @@ class IndexView(generic.ListView):
 class ArticleView(generic.DetailView):
     model = Article
     template_name = "articles/article.html"
-    
+
 
 class CommentsView(generic.ListView):
     template_name = "articles/comment_list.html"
@@ -42,6 +42,9 @@ def comment(request, article_id):
         return render(request, "articles/article.html", context)
     else:
         parent = None
+        if "parent" in request.POST:
+            parent = get_object_or_404(Comment, pk=request.POST["parent"])
+
         comment = Comment.objects.create_comment(
             article,
             parent,
