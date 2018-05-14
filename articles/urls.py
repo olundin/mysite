@@ -10,5 +10,4 @@ urlpatterns = [
     path("<int:pk>/", views.ArticleView.as_view(), name="article"),
     # exammple: /articles/0/comment
     path('<int:article_id>/comment/', views.comment, name='comment'),
-
 ]

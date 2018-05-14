@@ -1,6 +1,12 @@
+{% extends "mysite/base.html" %}
 {% load static %}
 
+{% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'articles/highlight.css' %}" />
+{% endblock %}
+
+
+{% block main %}
 
 <h1>{{ article.title }}</h1>
 <p>Published: <time>{{ article.date_published }}</time></p>
@@ -38,3 +44,5 @@
 {% else %}
     <p>No comments are available.</p>
 {% endif %}
+
+{% endblock %}
