@@ -1,7 +1,6 @@
-{% load static %}
+{% extends "mysite/base.html" %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'articles/style.css' %}" />
-
+{% block main %}
 {% if article_list %}
     <ul>
     {% for article in article_list %}
@@ -11,3 +10,4 @@
 {% else %}
     <p>No articles are available.</p>
 {% endif %}
+{% endblock %}
