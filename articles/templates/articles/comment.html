@@ -1,0 +1,15 @@
+<div class="comment">
+    <p>Comment posted on <time>{{ comment.date_posted }}</time> by {{ comment.alias }}:</p>
+    <p>{{ comment.text }}</p>
+
+    {% if comment.has_children %}
+        <ul class="comment-list">
+            <li>
+                {% for comment in comment.children.all %}
+                    {% include "articles/comment.html" %}
+                    {% include "articles/comment_form.html" %}
+                {% endfor %}
+            </li>
+        </ul>
+    {% endif %}
+</div>

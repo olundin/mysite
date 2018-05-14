@@ -2,7 +2,7 @@
 
 {% block main %}
 {% if article_list %}
-    <ul>
+    <ul class="article-list">
     {% for article in article_list %}
         <li><a href="{% url 'articles:article' article.id %}">{{ article.title }}</a></li>
     {% endfor %}

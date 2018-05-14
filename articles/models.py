@@ -9,6 +9,9 @@ class Article(models.Model):
     date_published = models.DateTimeField()
     date_modified = models.DateTimeField()
 
+    def comment_list_top_level(self):
+        return Comment.objects.filter(article=self, parent=None)
+
     def comment_list(self):
         return Comment.objects.filter(article=self)
 
@@ -37,12 +40,15 @@ class CommentManager(models.Manager):
 
 class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True)
+    parent = models.ForeignKey("self", related_name="children", on_delete=models.CASCADE, null=True)
     alias = models.CharField(max_length=50)
     text = models.TextField()
     date_posted = models.DateTimeField()
 
     objects = CommentManager()
+
+    def has_children(self):
+        return self.children.count() != 0
 
     def __str__(self):
         return self.alias + ": " + self.text[:10] + "..."

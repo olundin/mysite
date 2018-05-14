@@ -1,0 +1,9 @@
+<form action="{% url 'articles:comment' article.id %}" method="post" class="comment-form">
+{% csrf_token %}
+    {% if comment %}
+    <input type="hidden" name="parent" value="{{ comment.id }}">
+    {% endif %}
+    <input type="text" name="alias" placeholder="Your name"><br />
+    <textarea name="text" placeholder="Comment text"></textarea><br />
+    <input type="submit" value="Submit comment" />
+</form>
