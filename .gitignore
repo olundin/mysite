@@ -1,5 +1,6 @@
 # Django
 db.sqlite3
+mysite/settings_secret.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

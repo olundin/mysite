@@ -9,6 +9,9 @@
     <header>
         {% block header %}
         <h1>Header</h1>
+        <ul>
+            <li><a href="{% url 'articles:index' %}">Articles</a></li>
+        </ul>
         {% endblock %}
     </header>
 
