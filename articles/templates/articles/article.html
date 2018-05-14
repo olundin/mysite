@@ -1,3 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'articles/highlight.css' %}" />
+
 <h1>{{ article.title }}</h1>
 <p>Published: <time>{{ article.date_published }}</time></p>
 <p>Modified: <time>{{ article.date_modified }}</time></p>
