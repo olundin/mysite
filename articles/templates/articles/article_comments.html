@@ -1,0 +1,12 @@
+<a href="#comments" data-toggle="collapse">Comments ({{ article.comment_list.count }})</a>
+
+<ul id="comments" class="collapse show comment-chain">
+    {% for comment in article.comment_list_top_level %}
+    <li>
+    {% include "articles/comment_tree.html" %}
+    </li>
+    {% endfor %}
+</ul>
+
+<p>New comment:</p>
+{% include "articles/comment_form.html" %}

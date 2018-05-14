@@ -1,0 +1,13 @@
+.comment-chain {
+    list-style-type: none;
+    border-left: 1px solid #000;
+}
+
+.comment {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.comment-title {
+    font-weight: bold;
+}

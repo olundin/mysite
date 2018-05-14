@@ -1,13 +1,38 @@
 {% extends "base.html" %}
 
 {% block main %}
-{% if article_list %}
-    <ul class="article-list">
-    {% for article in article_list %}
-        <li><a href="{% url 'articles:article' article.id %}">{{ article.title }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No articles are available.</p>
-{% endif %}
+
+<h1 class="display-1">Articles</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Article title</th>
+            <th>Date published</th>
+            <th>Date modified</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if article_list %}
+            {% for article in article_list %}
+                <tr>
+                    <td>
+                        <a href="{% url 'articles:article' article.id %}">
+                            {{ article.title }}
+                        </a>
+                    </td>
+                    <td>
+                        {{ article.date_published }}
+                    </td>
+                    <td>
+                        {{ article.date_modified }}
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <p>No articles are available.</p>
+        {% endif %}
+    </tbody>
+</table>
+
 {% endblock %}

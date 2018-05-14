@@ -1,0 +1,24 @@
+<div class="comment">
+    <div class="comment-body">
+        <p class="comment-title">Comment by {{ comment.alias }} posted on {{ comment.date_posted }}</p>
+        <p class="comment-text">{{ comment.text }}</p>
+        {% if comment.has_children %}
+        <a href="#replies{{ comment.id }}" data-toggle="collapse">Replies ({{ comment.children.all.count }})</a> -
+        {% endif %}
+        <a href="#reply{{ comment.id }}" data-toggle="collapse">Reply to {{ comment.alias }}</a>
+    </div>
+    <div id="reply{{ comment.id }}" class="collapse">
+        {% include "articles/comment_form.html" %}
+    </div>
+    {% if comment.has_children %}
+    <div>
+        <ul id="replies{{ comment.id }}" class="collapse comment-chain">
+            {% for comment in comment.children.all %}
+            <li>
+                {% include "articles/comment_tree.html" %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>

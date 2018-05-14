@@ -4,19 +4,19 @@
     <input type="hidden" name="parent" value="{{ comment.id }}">
     {% endif %}
     <div class="form-group">
-        <label for="alias" class="control-label col-sm-1">Name:</label>
-        <div class="col-sm-11">
-            <input type="text" class="form-control" name="alias" placeholder="Enter your name" id="alias"><br />
+        <label class="control-label col-sm-4">Name:</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="alias" placeholder="Enter your name"><br />
         </div>
     </div>
     <div class="form-group">
-        <label for="alias" class="control-label col-sm-1">Text:</label>
-        <div class="col-sm-11">
-            <textarea name="text" class="form-control" placeholder="Enter comment text" id="text"></textarea><br />
+        <label class="control-label col-sm-4">Text:</label>
+        <div class="col-sm-8">
+            <textarea name="text" class="form-control" placeholder="Enter comment text"></textarea><br />
         </div>
     </div>
     <div class="form-group">
-        <div class="col-sm-offset-1 col-sm-11">
+        <div class="col-sm-offset-4 col-sm-8">
             <input type="submit" class="btn btn-primary" value="Submit comment" />
         </div>
     </div>

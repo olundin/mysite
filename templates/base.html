@@ -1,18 +1,26 @@
 {% load static %}
+{% load analytical %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% analytical_head_top %}
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}My Site{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
     {% block style %}{% endblock %}
+
+    {% analytical_head_bottom %}
 </head>
 
-<body>
+<body class="container">
+    {% analytical_body_top %}
+
     <header class="jumbotron text-center">
         {% block header %}
         <h1>Header</h1>
@@ -20,11 +28,9 @@
         {% endblock %}
     </header>
 
-    <div class="container">
-        {% include "alert.html" %}
-    </div>
+    {% include "alert.html" %}
 
-    <nav class="container navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="{% url 'home:index' %}">MySite</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -53,7 +59,7 @@
       </div>
     </nav>
 
-    <main class="container">
+    <main>
         {% block main %}
         <p>Main</p>
         {% endblock %}
@@ -64,5 +70,7 @@
         <p>Footer</p>
         {% endblock %}
     </footer>
+
+    {% analytical_body_bottom %}
 </body>
 </html>

@@ -1,3 +1,4 @@
 Django==2.0.4
 Pygments==2.2.0
-mistune=0.8.3
+mistune==0.8.3
+django-analytical==2.4.0
